@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceq5jp1dtd7sl"]
+
+[ext_resource type="Texture2D" uid="uid://p3ppye1wapfk" path="res://images/Fighter/Charge_1.png" id="1_vep0m"]
+[ext_resource type="Script" path="res://bullet.gd" id="2_ehliw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13c8d"]
+size = Vector2(27.3778, 3.36008)
+
+[node name="bullet" type="Sprite2D"]
+position = Vector2(323.291, 614.812)
+rotation = 1.5708
+scale = Vector2(1.33481, 2.5565)
+texture = ExtResource("1_vep0m")
+script = ExtResource("2_ehliw")
+
+[node name="bullet_area" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_area"]
+visible = false
+position = Vector2(0, -0.56012)
+shape = SubResource("RectangleShape2D_13c8d")
+
+[connection signal="area_entered" from="bullet_area" to="." method="_on_bullet_area_area_entered"]
